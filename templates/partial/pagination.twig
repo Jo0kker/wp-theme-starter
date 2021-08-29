@@ -1,0 +1,12 @@
+{% import '_macros.twig' as macros %}
+
+{% if posts.pagination.pages is not empty %}
+  <div class="pagination container">
+    {% if posts.pagination.prev %}
+      <div class="nav-previous"><a href="{{ posts.pagination.prev.link }}"> {{ macros.svg('arrow-prev', '', '', site.theme.link) }} Précédent</a></div>
+    {% endif %}
+    {% if posts.pagination.next %}
+      <div class="nav-next"><a href="{{ posts.pagination.next.link }}"> Suivant {{ macros.svg('arrow-next', '', '', site.theme.link) }}</a></div>
+    {% endif %}
+  </div>
+{% endif %}

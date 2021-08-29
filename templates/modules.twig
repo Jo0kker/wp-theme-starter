@@ -1,0 +1,10 @@
+{% set modules_available = [
+  'module_quote', 'module_editor'
+] %}
+{% set module_i = 1 %}
+{% for module in modules %}
+  {% if module.acf_fc_layout in modules_available %}
+    {% include "modules/" ~ module.acf_fc_layout ~ ".twig" %}
+    {% set module_i = module_i + 1 %}
+  {% endif %}
+{% endfor %}

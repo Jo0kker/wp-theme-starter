@@ -1,0 +1,27 @@
+{% extends "base.twig" %}
+{% set body_class = ' erreur-404' %}
+
+
+{% block content %}
+    <main role="main">
+        <div id="main-content" class="main-content">
+            <div class="inner-wrapper">
+                <div class="introduction container js-item-inview">
+                    <div class="title">
+                        <h1 class="a-title-1">Oups !</h1>
+                    </div>
+                    <div class="content editor-wysiwyg">
+                        <h2>Page non trouvée</h2>
+                    </div>
+                </div>
+
+
+                <div class="content-404 js-item-inview">
+                    <a href="" class="a-button as--single as--job">
+                        Retour à la page d'accueil
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

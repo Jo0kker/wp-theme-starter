@@ -1,0 +1,46 @@
+{# **********
+    MACROS
+********** #}
+
+{# SVG #}
+{% macro svg(name, size, class, siteLink) %}
+  <svg class="a-icon as--{{ size | default(20) }}{% if class %} {{ class }}{% endif %}" aria-hidden="true"
+       focusable="false">
+    <use xlink:href="{{ siteLink }}/assets/img/svg/icon-sprite.svg#icon-{{ name }}"></use>
+  </svg>
+{% endmacro %}
+
+
+
+{# a.a-button #}
+{% macro btnLink(content, class, link, iconName, classIcon, assetsDir, iconSize, iconPosition, attributes) %}
+  {% from _self import svg %}
+  <a
+    href="{{ link }}"
+    title="{{ content }}"
+    class="a-button{% if class %} {{ class }}{% endif %}{% if iconPosition %} as--{{ iconPosition }}{% endif %}"
+    {% for attr, value in attributes %} {{ attr }}="{{ value }}"{% endfor %}
+  >
+  {% if iconName %}{{ svg(iconName, iconSize, classIcon, assetsDir) }}{% endif %}
+  {% if content %}{{ content }}{% endif %}
+  </a>
+{% endmacro %}
+
+{# span.a-button #}
+{% macro btnSpan(content, class, iconName, iconSize, iconPosition, attributes) %}
+  {% from _self import svg %}
+  <span class="a-button{% if class %} {{ class }}{% endif %}{% if iconPosition %} as--{{ iconPosition }}{% endif %}"{% for attr, value in attributes %} {{ attr }}="{{ value }}"{% endfor %}>
+  {% if iconName %}{{ svg(iconName, iconSize) }}{% endif %}
+  {% if content %}{{ content }}{% endif %}
+  </span>
+{% endmacro %}
+
+{# button.a-button #}
+{% macro btnButton(content, class, iconName, iconSize, iconPosition, attributes) %}
+  {% from _self import svg %}
+  <button
+  type="button" class="a-button{% if class %} {{ class }}{% endif %}{% if iconPosition %} as--{{ iconPosition }}{% endif %}"{% for attr, value in attributes %} {{ attr }}="{{ value }}"{% endfor %}>
+  {% if iconName %}{{ svg(iconName, iconSize) }}{% endif %}
+  {% if content %}{{ content }}{% endif %}
+  </button>
+{% endmacro %}

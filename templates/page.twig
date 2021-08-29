@@ -1,0 +1,12 @@
+{% extends "base.twig" %}
+
+{% block content %}
+  <div class="inner-wrapper">
+	  {% include "partial/introduction.twig" with {
+          'title': post.meta('header_title'),
+          'subtitle': post.meta('header_subtitle'),
+          'text': post.meta('header_text')
+    } %}
+	  {% include "modules.twig" with {'modules': post.meta('modules')} %}
+  </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+/*
+ * Theme Name: WP starter theme TIMBER
+ * Description: Theme WP Timber
+ * Author: Acti
+*/
+
+.gform_body>ul>li.hidden_label  label.gfield_label{
+  display: none;
+}

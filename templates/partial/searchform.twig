@@ -1,0 +1,9 @@
+<form role="search" method="get" id="searchform" class="searchform" action="{{site.link}}">
+  <label for="search-input">{{ pll__('Que cherchez-vous ?') }}</label>
+  <input type="search" value="{{ function('get_search_query') }}" name="s" id="search-input" placeholder="{{ pll__('Tapez votre texte') }}" data-swplive="true">
+  <button type="submit" id="search-submit" aria-label="{{ pll__('rechercher') }}">
+    <svg class="a-icon as--25 as--grey-1" aria-hidden="true" focusable="false">
+      <use xlink:href="{{ site.theme.link }}/assets/img/svg/icon-sprite.svg#icon-search"></use>
+    </svg>
+  </button>
+</form>

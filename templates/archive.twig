@@ -1,0 +1,72 @@
+{% extends "base.twig" %}
+{% import '_macros.twig' as macros %}
+
+{% set headerTitle = site.lang == 'en' ? options['header_en_news_title'] : options['header_news_title'] %}
+{% set headerSubtitle = site.lang == 'en' ? options['header_en_news_subtitle'] : options['header_news_subtitle'] %}
+{% set headerText = site.lang == 'en' ? options['header_en_news_text'] : options['header_news_text'] %}
+
+{% block content %}
+  <div class="inner-wrapper">
+	  {% include "partial/introduction.twig" with {
+      'title': headerTitle,
+      'subtitle': headerSubtitle,
+      'text': headerText
+    } %}
+
+    <!-- AJAX -->
+    <form method="post" action="/">
+      <ul class="form-ui container form-field js-item-inview">
+        <!--DEV : ONLY 'filter-news-all' needs the keep its id name-->
+        <li class="input-checkbox">
+          <input type="checkbox" id="filter-news-all" name="filter-news-all" value="0"/>
+          <label for="filter-news-all" class="a-button as--secondary as--upper">tout</label>
+        </li>
+        <!-- -->
+        {% for category in categories %}
+          <li class="input-checkbox">
+            <input type="checkbox" value="{{ category.term_id }}" id="filter-news-{{ category.term_id }}" name="filter-news-{{ category.term_id }}"/>
+            <label for="filter-news-{{ category.term_id }}" class="a-button as--secondary as--upper">{{ category.name }}</label>
+          </li>
+        {% endfor %}
+      </ul>
+    </form>
+    <br><br><br><br>
+
+    <div class="container grid-result js-item-inview">
+      <p class="result">{{ posts.found_posts }} résultats</p>
+    </div>
+    <br><br><br><br>
+
+    <!-- Ajax container-->
+    <div class="grid container">
+      <div class="grid-content">
+        <div class="stamp stamp-2"></div>
+        <div class="stamp stamp-3"></div>
+        <!-- DEV : max items = 15 -->
+        {% for key, post in posts %}
+          {% set p = {
+            'img' : post.thumbnail.src,
+            'type': post.category.name,
+            'type_id': post.category.id,
+            'date' : post.date('j M Y'),
+            'title' : post.title,
+            'excert' : post.custom['header_text'],
+            'link':  post.link
+          } %}
+          {% if key >= 9 and key < 12 %}
+            {{ macros.cardPost(p, 'as--cold') }}
+          {% else %}
+            {{ macros.cardPost(p, 'as--warm') }}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <!-- -->
+
+    {% if posts.found_posts > 15 %}
+      <div class="grid-footer">
+        <button class="load-more a-button as--job" data-action="coexya_loadmore_news"><span class="a-title-5">{{ pll__('En voir davantage') }}</span></button>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

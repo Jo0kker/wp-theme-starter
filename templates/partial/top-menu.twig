@@ -1,0 +1,11 @@
+{% import '_macros.twig' as macros %}
+
+{% if top_menu %}
+	<ul>
+	{% for item in items %}
+		<li class="h-hide-mobile">
+			<a class="{{ item.classes | join(' ') }}" target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
+		</li>
+	{% endfor %}
+	</ul>
+{% endif %}

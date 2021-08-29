@@ -1,0 +1,10 @@
+{% if footer_menu %}
+  <ul class="footer-links">
+    <li class="h-color-grey-2">©{{ site.name }} {{"now"|date('Y')}}</li>
+    {% for item in items %}
+      <li>
+        <a class="h-color-grey-2" target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

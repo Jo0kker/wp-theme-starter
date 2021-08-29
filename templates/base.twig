@@ -1,0 +1,38 @@
+{% import '_macros.twig' as macros %}
+{% set assetsDir = '/app/themes/wp-theme-starter' %}
+<!doctype html>
+<html lang="fr">
+{% block html_head_container %}
+
+    {% include 'html-header.twig' %}
+    {% block head %}
+    {% endblock %}
+    {% include 'partial/scripts_top.twig' %}
+{% endblock %}
+
+<body class="{{ pageClass }}">
+    <div id="body">
+      <a id="anchor-body" tabindex="-1"></a>
+      {% block header %}
+        {% include 'partial/main-menu.twig'%}
+      {% endblock %}
+
+        <main role="main">
+            <div id="main-content" class="main-content">
+                {% block content %}
+                    Sorry, no content
+                {% endblock %}
+            </div>
+        </main>
+        {% block footer %}
+            <footer role="contentinfo">
+                {% include 'partial/footer.twig' %}
+            </footer>
+            {{ function('wp_footer') }}
+        {% endblock %}
+    </div>
+    {% block bottomScript %}
+      {%- include "partial/scripts_bottom.twig" -%}
+    {% endblock bottomScript %}
+</body>
+</html>

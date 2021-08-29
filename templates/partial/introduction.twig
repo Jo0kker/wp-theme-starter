@@ -1,0 +1,23 @@
+{% set breadcrumb = breadcrumb | default(false) %}
+{% set title = title | default(post.title) %}
+{% set subtitle = subtitle | default(false) %}
+{% set text = text | default(false) %}
+
+<div class="introduction container js-item-inview">
+  {% if breadcrumb %}
+    {{ breadcrumb }}
+  {% endif %}
+
+  <div class="title">
+    <h1 class="a-title-1">{{ title }}</h1>
+  </div>
+
+  <div class="content editor-wysiwyg">
+    {% if subtitle %}
+      <h2>{{ subtitle }}</h2>
+    {% endif %}
+    {% if text %}
+      <p>{{ text }}</p>
+    {% endif %}
+  </div>
+</div>
